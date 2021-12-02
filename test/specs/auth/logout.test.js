@@ -1,0 +1,22 @@
+const loginPage = require('../../../page/login.page');
+const users = require('../../../data/users.data');
+const routes = require('../../../data/routes.data');
+
+describe('Authentication - ', () => {
+    beforeEach('Logout', async () => {
+        await console.log('url: ' + browser.options.baseUrl);
+        await loginPage.open();
+        await loginPage.login(users.testUser.username, users.testUser.password);
+    });
+
+    it('Authenticated user should be able to logout', async () => {
+        await expect(browser).toHaveUrlContaining(routes.account);
+        await expect(loginPage.myAccountButton).toBeDisplayed();
+        await expect(loginPage.signOutButton).toBeDisplayed();
+
+        await loginPage.signOutButton.click()
+        await expect(browser).toHaveUrlContaining(routes.login);
+        await expect(loginPage.emailField).toBeDisplayed();
+        await expect(loginPage.passwordField).toBeDisplayed();
+    });
+});
