@@ -67,4 +67,4 @@ To run tests against the different environments you can change the value of the 
 
 &nbsp; Example to run tests on test environment
 
-&emsp; ```ENV=test npm run multiple-browser -- --spec ./test/specs/auth/login.test.js```
+&emsp; ```ENV=test npm run multiple-browser -- --spec ./test/specs/products.test.js```
