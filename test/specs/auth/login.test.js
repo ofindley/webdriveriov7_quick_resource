@@ -4,7 +4,6 @@ const routes = require('../../../data/routes.data');
 
 describe('Authentication - ', () => {
     beforeEach('Navigate', async () => {
-        await console.log('url: ' + browser.options.baseUrl);
         await loginPage.open();
     });
 

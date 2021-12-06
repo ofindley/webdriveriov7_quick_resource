@@ -4,7 +4,6 @@ const routes = require('../../../data/routes.data');
 
 describe('Authentication - ', () => {
     beforeEach('Logout', async () => {
-        await console.log('url: ' + browser.options.baseUrl);
         await loginPage.open();
         await loginPage.login(users.testUser.username, users.testUser.password);
     });
