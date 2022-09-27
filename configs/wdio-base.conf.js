@@ -1,6 +1,12 @@
 const fs = require('fs');
 const errorDirectory = 'screenshots';
 
+/* Importing QualityWatcher WDIO service and reporter modules */
+import QualityWatcherService from "@qualitywatcher/wdio-service";
+import QualityWatcherReporter from "@qualitywatcher/wdio-reporter";
+ 
+require("dotenv").config(); // Requiring dotenv NPM module to use QualityWatcher API Key added to the .env file
+
 module.exports = {
     runner: 'local',
     specs: [
@@ -21,9 +27,18 @@ module.exports = {
     waitforTimeout: 10000,
     connectionRetryTimeout: 120000,
     connectionRetryCount: 3,
-    services: ['selenium-standalone'],
+
+    /* QualityWatcher WDIO service options */
+    services: ['selenium-standalone', [QualityWatcherService, {
+        email: 'ofindley@qualitywatcher.com',
+        apiKey: process.env.QUALITYWATCHER_API_KEY, // using dotenv module to add QualityWatcher API Key stored in the .env
+        testRunName: "Sample Automation results",
+        description: 'This is a sample test run from our sample test automation.',
+        projectId: 2,
+        includeAllCases: true,
+    }]],
     framework: 'mocha',
-    reporters: ['spec'],
+    reporters: ['spec', QualityWatcherReporter], // QualityWatcher WDIO reporter
     capabilities: [{
         maxInstances: 5,
         browserName: 'chrome',
