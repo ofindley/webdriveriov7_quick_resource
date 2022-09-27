@@ -7,6 +7,10 @@ describe('Authentication - ', () => {
         await loginPage.open();
     });
 
+    /* 
+        Deliberatly didn't add suite & case id to display the effect of 
+        includeAllTest=true option in QualityWatcher WDIO service 
+    */
     it('user should be able to login with a valid user account', async () => {
         await loginPage.login(users.testUser.username, users.testUser.password);
 
@@ -15,7 +19,8 @@ describe('Authentication - ', () => {
         await expect(loginPage.signOutButton).toBeDisplayed();
     });
 
-    it('user should NOT be able to login with an invalid account', async () => {
+    // Skipping test on purpose to trigger a skipped test in QualityWatcher test results
+    it.skip('[S3C10] user should NOT be able to login with an invalid account', async () => {
         await loginPage.login(users.invalid.username, users.invalid.password);
 
         await expect(loginPage.errorMsg).toBeDisplayed();

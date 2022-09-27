@@ -8,7 +8,8 @@ describe('Authentication - ', () => {
         await loginPage.login(users.testUser.username, users.testUser.password);
     });
 
-    it('Authenticated user should be able to logout', async () => {
+    // Suite & Case id for QualityWatcher integration
+    it('[S3C11] Authenticated user should be able to logout', async () => {
         await expect(browser).toHaveUrlContaining(routes.account);
         await expect(loginPage.myAccountButton).toBeDisplayed();
         await expect(loginPage.signOutButton).toBeDisplayed();
