@@ -8,8 +8,7 @@
         "@wdio/mocha-framework": "^7.16.6",
         "@wdio/selenium-standalone-service": "^7.16.6",
         "@wdio/spec-reporter": "^7.16.4",
-        "eslint": "^8.2.0",
-        "eslint-config-qualityworks": "^1.0.1"
+        "eslint-config-qualityworks": "^1.0.2"
     },
     "scripts": {
         "test": "ENV=prod wdio run ./configs/wdio-chrome.conf.js",
